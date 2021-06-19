@@ -40,7 +40,7 @@ public class wallManager : MonoBehaviour
     }
     public void MoveObje()
     {
-        myBody.AddForce(new Vector2(transform.up.x * 700, transform.up.y * 700));
+        myBody.AddForce(new Vector3(transform.up.x * 700, transform.up.y * 700,transform.up.z));
     }
        
         
