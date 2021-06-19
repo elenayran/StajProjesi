@@ -5,9 +5,9 @@ using UnityEngine.AI;
 
 public class wallManager : MonoBehaviour
 {
-    public float speed;
+   
     private Rigidbody myBody;
-    Collider iscollider;
+   
     void Start()
     {
         myBody = GetComponent<Rigidbody>();
