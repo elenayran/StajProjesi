@@ -8,6 +8,9 @@ TagManager:
   - wall
   - Fire
   - Recruit
+  - Obstacle
+  - rightWall
+  - leftWall
   layers:
   - Default
   - TransparentFX

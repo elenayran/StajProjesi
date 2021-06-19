@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float mySpeedX;
+    
     [SerializeField] float speed;
 
-    private bool canDoubleJump;
-    private Rigidbody myBody;
    
+    private Rigidbody myBody;
+
     private Animator myAnimator;
     public bool isGrounded;
-    public bool isWall;
     public bool isAlive;
+    public bool isObstacle;
+
+    public bool isRight;
     [SerializeField] float jumpPower;
+
 
 
     // Start is called before the first frame update
@@ -23,8 +26,8 @@ public class PlayerController : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myBody = GetComponent<Rigidbody>();
         isAlive = true;
-
-
+        isRight = true;
+        isGrounded = true;
     }
 
     void Update()
@@ -34,20 +37,15 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (isGrounded==true && isWall==false)
+        if (isGrounded)
         {
             transform.position += transform.forward * Time.deltaTime * speed;
-            myAnimator.SetTrigger("Run");
-
+            myAnimator.SetBool("Run", true);
         }
-        else if ((isGrounded==false && isWall==true) ||(isGrounded==false && isWall==false) || (isGrounded==true && isWall==true))
+        else
         {
-
-            
+            myAnimator.SetBool("Run", false);
         }
-        
-
-
     }
 
     void OnCollisionEnter(Collision other)
@@ -57,19 +55,34 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
 
         }
-        else if (other.gameObject.tag == "wall")
+        else if (other.gameObject.tag == "leftWall")
         {
-            isWall = true;
+            Debug.Log("duvarla temas etti");
+            isRight = true;
+            TurnRight();
+
+        }
+        else if (other.gameObject.tag == "rightWall")
+        {
+            Debug.Log("duvarla temas etti");
+            isRight = false;
+            TurnLeft();
         }
 
         else if (other.gameObject.tag == "Fire")
         {
             EndDeathAnim();
         }
-        else if (other.gameObject.tag == "Recruit") 
+        else if (other.gameObject.tag == "Recruit")
         {
 
         }
+        else if (other.gameObject.tag == "Obstacle")
+        {
+
+        }
+
+
 
     }
 
@@ -78,10 +91,6 @@ public class PlayerController : MonoBehaviour
         myAnimator.SetTrigger("Die");
         Debug.Log("playar öldü");
         isAlive = false;
-
-
-
-
     }
 
     void OnCollisionExit(Collision other)
@@ -91,49 +100,59 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
             myAnimator.SetTrigger("Slide");
         }
-
-        else if (other.gameObject.tag=="wall")
-        {
-            isWall = false;
-
-        }
     }
-        public void PlayerInput(GlobalVariables.TouchTypes touchtype, float x) {
+
+    public void PlayerInput(GlobalVariables.TouchTypes touchtype, float x)
+    {
         Debug.Log(touchtype);
+
+
+
         switch (touchtype)
         {
             case GlobalVariables.TouchTypes.SWIPE_UP:
-                Debug.Log("Zýpladý!"); 
+                Debug.Log("Zýpladý!");
                 if (isGrounded)
                 {
-                    myBody.velocity = new Vector2(myBody.velocity.x, jumpPower);
-                    //myBody.AddForce(Vector3.up * jumpPower* Time.deltaTime);
+                    myBody.velocity = new Vector3(myBody.velocity.x+5, jumpPower);
+                    //myBody.AddForce(Vector3.up * jumpPower * Time.deltaTime);
 
                     myAnimator.SetTrigger("Jump");
                     Debug.Log("zýplýyorrrrrrrr");
                     isGrounded = false;
-                    
+
                 }
-              
                 break;
             case GlobalVariables.TouchTypes.SWIPE_LEFT:
-                Debug.Log("Sola gitti!");
-                if (transform.rotation == Quaternion.Euler(0, 90, 0))
+                if (isRight)
                 {
-                        Debug.Log("Sola bakýyor");
-                        transform.rotation = Quaternion.Euler(0, -90, 0);
+                    isRight = false;
+                    Debug.Log("Sola döndürüldü");
+                    TurnLeft();
                 }
-                
                 break;
             case GlobalVariables.TouchTypes.SWIPE_RIGHT:
                 Debug.Log("Saða gitti!");
-                if (transform.rotation == Quaternion.Euler(0, -90, 0))
+
+                if (!isRight)
                 {
-                        Debug.Log("Saða bakýyor");
-                        transform.rotation = Quaternion.Euler(0, 90, 0);
-                  
+                    isRight = true;
+                    Debug.Log("Saða döndürüldü");
+                    TurnRight();
                 }
                 break;
+
+
         }
+    }
+
+    public void TurnLeft()
+    {
+        transform.rotation = Quaternion.Euler(0, -90, 0);
+    }
+
+    public void TurnRight()
+    {
+        transform.rotation = Quaternion.Euler(0, 90, 0);
     }
 }
