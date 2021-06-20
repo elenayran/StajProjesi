@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class wallManager : MonoBehaviour
 {
@@ -12,38 +11,21 @@ public class wallManager : MonoBehaviour
     {
         myBody = GetComponent<Rigidbody>();
         //myBody.velocity = RandomVector(0f, 5f);
-
-
-
-
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    
-
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag== "Player")
         {
-
-            MoveObje();
-           
+            MoveObje();           
             Destroy(gameObject,5);
-            Debug.Log("yokoldu");
-
-
         }
     }
     public void MoveObje()
     {
-        myBody.AddForce(new Vector3(transform.up.x * 700, transform.up.y * 700,transform.up.z));
+        myBody.AddForce(new Vector3(0, 300, -3000));
+        myBody.useGravity = true;
+        Debug.Log("ghchkhukjbvkjm");
     }
-       
-        
-    
 
 }

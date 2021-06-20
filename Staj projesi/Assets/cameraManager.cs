@@ -17,7 +17,7 @@ public class cameraManager : MonoBehaviour
         transform.position = smoothedPosition;
         transform.LookAt(target);
 
-        transform.position = new Vector3(Mathf.Clamp(target.position.y, minX, maxX), transform.position.y, transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(target.position.x, minX, maxX), transform.position.y, transform.position.z);
     }
     //public Transform playerTransform;
 
