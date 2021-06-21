@@ -13,10 +13,13 @@ public class PlayerController : MonoBehaviour
     private Animator myAnimator;
     public bool isGrounded;
     public bool isAlive;
-    public bool isObstacle;
+    public bool isWall;
 
     public bool isRight;
-    [SerializeField] float jumpPower;
+    [SerializeField] float jumpPower=2.0f;
+    public Vector3 jump;
+    public bool isStace;
+   
 
 
 
@@ -28,26 +31,38 @@ public class PlayerController : MonoBehaviour
         isAlive = true;
         isRight = true;
         isGrounded = true;
+        jump = new Vector3(0.0f, 2.0f, 0.0f);
+        //isWall = true;
+        isStace = true;
+
     }
 
     void Update()
     {
+        if (!isStace)
+        {
+            return;
+
+        }
         if (!isAlive)
         {
             return;
         }
 
-        if (isGrounded)
+        if (isGrounded )
         {
             transform.position += transform.forward * Time.deltaTime * speed;
             myAnimator.SetBool("Run", true);
+            Debug.Log("zeminde koþuyorrrrrrrr");
         }
         else
         {
             myAnimator.SetBool("Run", false);
+            Debug.Log("koþma durdu");
         }
     }
 
+ 
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Ground")
@@ -68,6 +83,12 @@ public class PlayerController : MonoBehaviour
             isRight = false;
             TurnLeft();
         }
+        else if (other.gameObject.tag=="wall")
+        {
+            Stace();
+            //isWall = true;
+
+        }
 
         else if (other.gameObject.tag == "Fire")
         {
@@ -85,12 +106,22 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    void OnCollisionStay()
+    {
+        isGrounded = true;
+    }
 
     public void EndDeathAnim()
     {
         myAnimator.SetTrigger("Die");
         Debug.Log("playar öldü");
         isAlive = false;
+    }
+    public void Stace()
+    {
+        myAnimator.SetBool("Run", false);
+        Debug.Log("player konumu wall");
+        isStace = false;
     }
 
     void OnCollisionExit(Collision other)
@@ -99,6 +130,12 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
             myAnimator.SetTrigger("Slide");
+        }
+        else if (other.gameObject.tag=="wall")
+        {
+
+            isWall = false;
+            myAnimator.SetBool("Run", false);
         }
     }
 
@@ -114,8 +151,10 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Zýpladý!");
                 if (isGrounded)
                 {
-                    myBody.velocity = new Vector3(myBody.velocity.x+5, jumpPower);
-                    //myBody.AddForce(Vector3.up * jumpPower * Time.deltaTime);
+                    myBody.AddForce(jump *jumpPower, ForceMode.Impulse);
+                   
+                    //myBody.velocity = new Vector3(myBody.velocity.x, jumpPower);
+                    ////myBody.AddForce(Vector3.up * jumpPower * Time.deltaTime);
 
                     myAnimator.SetTrigger("Jump");
                     Debug.Log("zýplýyorrrrrrrr");
@@ -124,22 +163,26 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             case GlobalVariables.TouchTypes.SWIPE_LEFT:
-                if (isRight)
-                {
+
+               
+                  if (isRight)
+                  {
                     isRight = false;
                     Debug.Log("Sola döndürüldü");
                     TurnLeft();
-                }
+                  }
+               
                 break;
             case GlobalVariables.TouchTypes.SWIPE_RIGHT:
                 Debug.Log("Saða gitti!");
-
-                if (!isRight)
-                {
+               
+                    if (!isRight)
+                    {
                     isRight = true;
                     Debug.Log("Saða döndürüldü");
                     TurnRight();
-                }
+                    }
+                                
                 break;
 
 
@@ -149,10 +192,14 @@ public class PlayerController : MonoBehaviour
     public void TurnLeft()
     {
         transform.rotation = Quaternion.Euler(0, -90, 0);
+
+        
+        
     }
 
     public void TurnRight()
     {
         transform.rotation = Quaternion.Euler(0, 90, 0);
+       
     }
 }
