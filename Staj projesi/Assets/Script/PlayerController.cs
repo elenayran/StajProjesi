@@ -124,9 +124,14 @@ public class PlayerController : MonoBehaviour
 
     public void EndDeathAnim()
     {
-        myAnimator.SetTrigger("Die");
-        Debug.Log("playar öldü");
-        isAlive = false;
+
+      
+            myAnimator.SetTrigger("Die");
+            Debug.Log("playar öldü");
+            isAlive = false;
+
+        
+       
     }
     public void Stace()
     {
