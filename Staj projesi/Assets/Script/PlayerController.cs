@@ -17,9 +17,10 @@ public class PlayerController : MonoBehaviour
 
     public bool isRight;
     [SerializeField] float jumpPower=2.0f;
-    public Vector3 jump;
+    //public Vector3 jump;
     public bool isStace;
-   
+    [SerializeField] Vector3 rightJump;
+    [SerializeField] Vector3 leftJump;
 
 
 
@@ -31,7 +32,10 @@ public class PlayerController : MonoBehaviour
         isAlive = true;
         isRight = true;
         isGrounded = true;
-        jump = new Vector3(0.0f, 2.0f, 0.0f);
+        //jump = new Vector3(0.0f, 2.0f, 0.0f);
+        rightJump = new Vector3(-1.0f, 2.0f, 0.0f);
+        leftJump = new Vector3(1.0f, 2.0f, 0.0f);
+
         //isWall = true;
         isStace = true;
 
@@ -49,7 +53,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (isGrounded )
+        if (isGrounded  )
         {
             transform.position += transform.forward * Time.deltaTime * speed;
             myAnimator.SetBool("Run", true);
@@ -75,6 +79,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("duvarla temas etti");
             isRight = true;
             TurnRight();
+            //RightJump();
 
         }
         else if (other.gameObject.tag == "rightWall")
@@ -82,6 +87,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("duvarla temas etti");
             isRight = false;
             TurnLeft();
+            ////LeftJump();
+
+
+
+
         }
         else if (other.gameObject.tag=="wall")
         {
@@ -100,7 +110,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.tag == "Obstacle")
         {
-
+            Debug.Log("obsracle aktif");
+            myAnimator.SetTrigger("Stumble");
         }
 
 
@@ -151,31 +162,42 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Zýpladý!");
                 if (isGrounded)
                 {
-                    myBody.AddForce(jump *jumpPower, ForceMode.Impulse);
-                   
-                    //myBody.velocity = new Vector3(myBody.velocity.x, jumpPower);
-                    ////myBody.AddForce(Vector3.up * jumpPower * Time.deltaTime);
+                    Debug.Log(isRight);
+                    if (isRight)
+                    {
+                        //LeftJump();
+                        myAnimator.SetTrigger("Jump");
+                        Debug.Log("zýplýyorrrrrrrr");
+                        isGrounded = false;
+                        myBody.AddForce(leftJump * jumpPower, ForceMode.Impulse);
 
-                    myAnimator.SetTrigger("Jump");
-                    Debug.Log("zýplýyorrrrrrrr");
-                    isGrounded = false;
+                    }
+                    if (!isRight)
+                    {
+                        //RightJump();
+                        myAnimator.SetTrigger("Jump");
+                        Debug.Log("zýplýyorrrrrrrr");
+                        isGrounded = false;
+                        myBody.AddForce(rightJump * jumpPower, ForceMode.Impulse);
+                    }
+                    //myBody.AddForce(jump * jumpPower, ForceMode.Impulse);
+                    //myBody.velocity +=transform.forward*3f;
+                    
 
                 }
                 break;
-            case GlobalVariables.TouchTypes.SWIPE_LEFT:
 
-               
+            case GlobalVariables.TouchTypes.SWIPE_LEFT:
                   if (isRight)
                   {
                     isRight = false;
                     Debug.Log("Sola döndürüldü");
                     TurnLeft();
                   }
-               
                 break;
+
             case GlobalVariables.TouchTypes.SWIPE_RIGHT:
                 Debug.Log("Saða gitti!");
-               
                     if (!isRight)
                     {
                     isRight = true;
@@ -184,8 +206,6 @@ public class PlayerController : MonoBehaviour
                     }
                                 
                 break;
-
-
         }
     }
 
@@ -202,4 +222,5 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 90, 0);
        
     }
+
 }
