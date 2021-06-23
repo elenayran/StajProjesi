@@ -91,8 +91,6 @@ public class PlayerController : MonoBehaviour
             ////LeftJump();
 
 
-
-
         }
         else if (other.gameObject.tag=="wall")
         {
