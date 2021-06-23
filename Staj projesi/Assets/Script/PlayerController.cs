@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public bool isStace;
     [SerializeField] Vector3 rightJump;
     [SerializeField] Vector3 leftJump;
+    
 
 
 
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
         //isWall = true;
         isStace = true;
-
+        
     }
 
     void Update()
@@ -129,7 +130,7 @@ public class PlayerController : MonoBehaviour
             myAnimator.SetTrigger("Die");
             Debug.Log("playar öldü");
             isAlive = false;
-
+       
         
        
     }
