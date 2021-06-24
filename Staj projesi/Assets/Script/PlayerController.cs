@@ -250,7 +250,6 @@ public class PlayerController : MonoBehaviour
         loseText.SetActive(false);
         StartMenu.isGameStarted = false;
        
-        PlayText.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
 
