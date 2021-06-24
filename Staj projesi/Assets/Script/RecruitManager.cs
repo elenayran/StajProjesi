@@ -7,7 +7,6 @@ public class RecruitManager : MonoBehaviour
     public GameObject text;
     public int value;
     private Animator animator;
-    [SerializeField] public GameObject Panel;
     public float speed;
    
     public GameObject Canvas;
@@ -16,7 +15,7 @@ public class RecruitManager : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        Panel.SetActive(false);
+        //Panel.SetActive(false);
       
     }
 

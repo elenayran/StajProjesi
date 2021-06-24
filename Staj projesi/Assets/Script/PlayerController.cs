@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,8 +23,10 @@ public class PlayerController : MonoBehaviour
     public bool isStace;
     [SerializeField] Vector3 rightJump;
     [SerializeField] Vector3 leftJump;
-    
-
+    public FireManager fireManager;
+    public GameObject loseText;
+    public GameObject PlayText;
+    public startMenu StartMenu;
 
 
     // Start is called before the first frame update
@@ -39,11 +43,21 @@ public class PlayerController : MonoBehaviour
 
         //isWall = true;
         isStace = true;
+        loseText.SetActive(false);
+        
+
+        
         
     }
 
     void Update()
     {
+
+        if (!StartMenu.isGameStarted)
+        {
+            return;
+        }
+
         if (!isStace)
         {
             return;
@@ -128,7 +142,8 @@ public class PlayerController : MonoBehaviour
             myAnimator.SetTrigger("Die");
             Debug.Log("playar öldü");
             isAlive = false;
-       
+            StartCoroutine(Menu());
+           
         
        
     }
@@ -137,6 +152,7 @@ public class PlayerController : MonoBehaviour
         myAnimator.SetBool("Run", false);
         Debug.Log("player konumu wall");
         isStace = false;
+        fireManager.isStop = false;
     }
 
     void OnCollisionExit(Collision other)
@@ -227,4 +243,17 @@ public class PlayerController : MonoBehaviour
        
     }
 
+    public IEnumerator Menu()
+    {
+        loseText.SetActive(true);
+        yield return new WaitForSecondsRealtime(2f);
+        loseText.SetActive(false);
+        StartMenu.isGameStarted = false;
+       
+        PlayText.SetActive(true);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+
+
+    }
 }

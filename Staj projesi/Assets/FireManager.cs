@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FireManager : MonoBehaviour
 {
+    public startMenu StartMenu;
     public PlayerController player;
     private Rigidbody myBody;
     public float speed;
@@ -12,14 +13,13 @@ public class FireManager : MonoBehaviour
     void Start()
     {
         myBody = GetComponent<Rigidbody>();
-        isStop = true;
     }
 
     // Update is called once per frame
     private void Update()
     {
 
-        if (!isStop)
+        if (!StartMenu.isGameStarted || isStop)
         {
             myBody.velocity = Vector3.zero;
         }
@@ -42,7 +42,7 @@ public class FireManager : MonoBehaviour
         if (other.gameObject.tag=="Player")
         {
             player.EndDeathAnim();
-            isStop = false;
+            isStop = true;
            
 
         }
