@@ -6,9 +6,7 @@ public class RecruitManager : MonoBehaviour
 {
     public GameObject text;
     public int value;
-    private Animator animator;
-    public float speed;
-   
+    private Animator animator;   
     public GameObject Canvas;
   
     // Start is called before the first frame update
@@ -41,10 +39,8 @@ public class RecruitManager : MonoBehaviour
    
     public IEnumerator Wait()
     {
-            GameObject t =(GameObject) Instantiate(text, Canvas.transform);
-       
-            yield return new WaitForSecondsRealtime(0.5f);
-            Destroy(gameObject);
-            t.SetActive(false);       
+        GameObject t = Instantiate(text, transform.position, Quaternion.identity, null);       
+        yield return new WaitForSecondsRealtime(0.5f);
+        Destroy(gameObject);   
     }
 }
