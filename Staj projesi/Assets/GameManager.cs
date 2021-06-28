@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     {
         currentRecruit += recruitAdd;
 
-        recruitText.text = "Recruit: " + currentRecruit + "/12";
+        recruitText.text = "Recruit: " + currentRecruit + "/35";
 
     }
 }
