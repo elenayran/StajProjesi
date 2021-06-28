@@ -40,7 +40,7 @@ public class RecruitManager : MonoBehaviour
     public IEnumerator Wait()
     {
         GameObject t = Instantiate(text, transform.position, Quaternion.identity, null);       
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.2f);
         Destroy(gameObject);   
     }
 }

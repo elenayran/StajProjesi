@@ -6,6 +6,8 @@ public class cameraManager : MonoBehaviour
 {
 
     [SerializeField] float minX, maxX;
+    [SerializeField] float minY, maxY;
+
     public Transform target;
     public float smoothspeed = 0.125f;
     public Vector3 offset;
@@ -19,10 +21,10 @@ public class cameraManager : MonoBehaviour
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothspeed);
         transform.position = smoothedPosition;
         
-        transform.position = new Vector3(Mathf.Clamp(target.position.x, minX, maxX), target.position.y + 7f , transform.position.z);
-     
-        
+        transform.position = new Vector3(Mathf.Clamp(smoothedPosition.x, minX, maxX), Mathf.Clamp(smoothedPosition.y, minY,maxY), transform.position.z);
 
+
+        //target.position.y + 7f
 
 
     }
