@@ -19,13 +19,8 @@ public class cameraManager : MonoBehaviour
 
         Vector3 desiredPosition = target.position + offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothspeed);
-        transform.position = smoothedPosition;
         
-        transform.position = new Vector3(Mathf.Clamp(smoothedPosition.x, minX, maxX), smoothedPosition.y + 0.7f, smoothedPosition.z);
-
-
-        //target.position.y + 7f
-
+        transform.position = new Vector3(Mathf.Clamp(smoothedPosition.x, minX, maxX), Mathf.Clamp(smoothedPosition.y, minY, maxY), smoothedPosition.z);
 
     }
 
