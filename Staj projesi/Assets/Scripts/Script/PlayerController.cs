@@ -109,17 +109,20 @@ public class PlayerController : MonoBehaviour
 
 
         }
-        else if (other.gameObject.tag=="wall")
+        else if (other.gameObject.tag == "wall")
         {
             Stace();
             //isWall = true;
 
         }
 
-        else if (other.gameObject.tag == "Fire")
+        else if ((other.gameObject.tag == "Fire"))
         {
             EndDeathAnim();
+            Debug.Log("fire içinde");
         }
+      
+        
         else if (other.gameObject.tag == "Recruit")
         {
 
@@ -130,8 +133,16 @@ public class PlayerController : MonoBehaviour
             myAnimator.SetTrigger("Stumble");
         }
 
+        
 
 
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag=="fireSmall")
+        {
+            EndDeathAnim();
+        }
     }
     void OnCollisionStay()
     {
@@ -261,7 +272,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f);
         CompleteText.SetActive(false);
         StartMenu.isGameStarted = false;
-        restart();
+        Stagecomplete();
 
 
     }
@@ -269,5 +280,10 @@ public class PlayerController : MonoBehaviour
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Stagecomplete()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 }

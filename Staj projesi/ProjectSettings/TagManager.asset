@@ -11,6 +11,7 @@ TagManager:
   - Obstacle
   - rightWall
   - leftWall
+  - fireSmall
   layers:
   - Default
   - TransparentFX
