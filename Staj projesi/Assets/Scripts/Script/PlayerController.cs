@@ -285,9 +285,9 @@ public class PlayerController : MonoBehaviour
     private Scene scene;
     public void Stagecomplete()
     {
-        if (SceneManager.sceneCount==3)
+        if (SceneManager.sceneCount>3)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Level1");
         }
         else
         {
