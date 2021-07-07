@@ -282,8 +282,17 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    private Scene scene;
     public void Stagecomplete()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        if (SceneManager.sceneCount==3)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        
     }
 }
