@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         currentRecruit += recruitAdd;
 
-        recruitText.text = "Recruit: " + currentRecruit ;
+        recruitText.text = "Recruit: " + currentRecruit + "/" + recruitManagers.Length;
 
     }
 }

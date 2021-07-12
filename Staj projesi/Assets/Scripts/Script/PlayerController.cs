@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Vector3 leftJump;
     public FireManager fireManager;
     public GameObject loseText;
-    public GameObject PlayText;
     public startMenu StartMenu;
     public GameObject CompleteText;
 
@@ -282,7 +281,7 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private Scene scene;
+    
     public void Stagecomplete()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 % SceneManager.sceneCountInBuildSettings);       
