@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public int currentRecruit;
     public Text recruitText;
-    public PlayerController player;
     public RecruitManager[] recruitManagers;
     // Start is called before the first frame update
     void Start()
@@ -15,7 +14,6 @@ public class GameManager : MonoBehaviour
         recruitManagers = FindObjectsOfType<RecruitManager>();
         recruitText.text = "Recruit: " + currentRecruit + "/" + recruitManagers.Length;
     }
-
     public void AddRecruit(int recruitAdd)
     {
             currentRecruit += recruitAdd;

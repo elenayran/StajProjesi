@@ -8,6 +8,7 @@ public class RecruitManager : MonoBehaviour
     public int value;
     private Animator animator;   
     public GameObject Canvas;
+    
   
     // Start is called before the first frame update
     void Start()
@@ -21,22 +22,15 @@ public class RecruitManager : MonoBehaviour
     void Update()
     {
         animator.SetTrigger("move");
-        
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") 
         {
             FindObjectOfType<GameManager>().AddRecruit(value);
-            
-            //text.SetActive(true);
-           
             StartCoroutine(Wait());
-        
         }
-
     }
-   
     public IEnumerator Wait()
     {
         GameObject t = Instantiate(text, transform.position, Quaternion.identity, null);       

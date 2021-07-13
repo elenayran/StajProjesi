@@ -95,18 +95,13 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("duvarla temas etti");
             isRight = true;
-            TurnRight();
-            //RightJump();
-
+            TurnRight();  
         }
         else if (other.gameObject.tag == "rightWall")
         {
             Debug.Log("duvarla temas etti");
             isRight = false;
             TurnLeft();
-            ////LeftJump();
-
-
         }
         else if (other.gameObject.tag == "wall")
         {
@@ -177,7 +172,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.tag=="wall")
         {
-
             isWall = false;
             myAnimator.SetBool("Run", false);
         }
@@ -186,9 +180,6 @@ public class PlayerController : MonoBehaviour
     public void PlayerInput(GlobalVariables.TouchTypes touchtype, float x)
     {
         Debug.Log(touchtype);
-
-
-
         switch (touchtype)
         {
             case GlobalVariables.TouchTypes.SWIPE_UP:
@@ -198,28 +189,20 @@ public class PlayerController : MonoBehaviour
                     Debug.Log(isRight);
                     if (isRight)
                     {
-                        //LeftJump();
                         myAnimator.SetTrigger("Jump");
                         Debug.Log("zýplýyorrrrrrrr");
                         isGrounded = false;
                         myBody.AddForce(leftJump * jumpPower, ForceMode.Impulse);
-
                     }
                     if (!isRight)
                     {
-                        //RightJump();
                         myAnimator.SetTrigger("Jump");
                         Debug.Log("zýplýyorrrrrrrr");
                         isGrounded = false;
                         myBody.AddForce(rightJump * jumpPower, ForceMode.Impulse);
                     }
-                    //myBody.AddForce(jump * jumpPower, ForceMode.Impulse);
-                    //myBody.velocity +=transform.forward*3f;
-                    
-
-                }
+                 }
                 break;
-
             case GlobalVariables.TouchTypes.SWIPE_LEFT:
                   if (isRight)
                   {
@@ -228,7 +211,6 @@ public class PlayerController : MonoBehaviour
                     TurnLeft();
                   }
                 break;
-
             case GlobalVariables.TouchTypes.SWIPE_RIGHT:
                 Debug.Log("Saða gitti!");
                     if (!isRight)
@@ -236,8 +218,7 @@ public class PlayerController : MonoBehaviour
                     isRight = true;
                     Debug.Log("Saða döndürüldü");
                     TurnRight();
-                    }
-                                
+                    }                             
                 break;
         }
     }
@@ -246,8 +227,6 @@ public class PlayerController : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(0, -90, 0);
 
-        
-        
     }
 
     public void TurnRight()

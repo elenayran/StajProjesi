@@ -35427,7 +35427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1335516805219255490, guid: f26d4217911d5864d836c94c7f82058a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -348.6
+      value: -335
       objectReference: {fileID: 0}
     - target: {fileID: 1335516805219255490, guid: f26d4217911d5864d836c94c7f82058a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -35448,6 +35448,30 @@ PrefabInstance:
     - target: {fileID: 1335516805219255493, guid: f26d4217911d5864d836c94c7f82058a, type: 3}
       propertyPath: m_Name
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335516805655100003, guid: f26d4217911d5864d836c94c7f82058a, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335516805655100003, guid: f26d4217911d5864d836c94c7f82058a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335516805655100003, guid: f26d4217911d5864d836c94c7f82058a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335516805655100003, guid: f26d4217911d5864d836c94c7f82058a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335516805655100003, guid: f26d4217911d5864d836c94c7f82058a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335516805655100003, guid: f26d4217911d5864d836c94c7f82058a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f26d4217911d5864d836c94c7f82058a, type: 3}

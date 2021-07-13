@@ -26,7 +26,6 @@ public class wallManager : MonoBehaviour
         myBody.AddForce(new Vector3(0, 300, -3000));
         myBody.useGravity = true;
         Debug.Log("move objete girdi");
-
     }
 
 }
