@@ -284,6 +284,8 @@ public class PlayerController : MonoBehaviour
     
     public void Stagecomplete()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 % SceneManager.sceneCountInBuildSettings);       
+        int x = SceneManager.GetActiveScene().buildIndex + 1;
+        int y = (SceneManager.sceneCountInBuildSettings);
+        SceneManager.LoadScene(x % y);     
     }
 }
