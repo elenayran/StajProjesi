@@ -21,13 +21,9 @@ public class startMenu : MonoBehaviour
     {
         isGameStarted = true;
         GameStartButton.gameObject.SetActive(false);
-        
     }
 
-    //public void QuitButton()
-    //{
-    //    Application.Quit();
-    //}
+   
 
 
 }

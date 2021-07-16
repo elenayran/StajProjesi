@@ -18,7 +18,6 @@ public class FireManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
         if (!StartMenu.isGameStarted || isStop)
         {
             myBody.velocity = Vector3.zero;
@@ -26,25 +25,15 @@ public class FireManager : MonoBehaviour
         else
         {
             transform.position += Vector3.down * speed * Time.deltaTime;
-
             Debug.Log("aþaðýya doðru ileriliyor");
-            
         }
-       
-        
     }
-
-
-   
-    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag=="Player")
         {
             player.EndDeathAnim();
             isStop = true;
-           
-
         }
     }
 }

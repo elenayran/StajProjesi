@@ -35909,6 +35909,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5929042002488879544, guid: 65e69eb49bec7d74eb1ef38c07c7c1b8, type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929042002488879544, guid: 65e69eb49bec7d74eb1ef38c07c7c1b8, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 15
       objectReference: {fileID: 0}

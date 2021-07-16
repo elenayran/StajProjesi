@@ -149,7 +149,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("playar öldü");
             isAlive = false;
             StartCoroutine(Menu());
-           
     }
     public void Stace()
     {
@@ -158,9 +157,6 @@ public class PlayerController : MonoBehaviour
         isStace = false;
         fireManager.isStop = false;
         StartCoroutine(Complete());
-       
-        
-
     }
 
     void OnCollisionExit(Collision other)
@@ -251,16 +247,12 @@ public class PlayerController : MonoBehaviour
         CompleteText.SetActive(false);
         StartMenu.isGameStarted = false;
         Stagecomplete();
-
-
     }
 
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
-    
     public void Stagecomplete()
     {
         int x = SceneManager.GetActiveScene().buildIndex + 1;
